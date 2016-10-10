@@ -54,14 +54,18 @@
                   <button type="submit" class="btn btn-default">Submit</button>
                </form> -->
                <ul class="nav navbar-nav navbar-right">
-                  <li><a href="http://www.jquery2dotnet.com">Sign Up</a></li>
-                  <li class="dropdown">
+                <% if user_signed_in? %>
+                  <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+                <% else %>
+                  <li><%= link_to('Sign up', new_user_registration_path, :method => :get) %></li>
+                  <li><%= link_to('Sign in', new_user_session_path, :method => :get) %></li>
+                  <!-- <li class="dropdown">
                      <a href="http://www.jquery2dotnet.com" class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
                      <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
                         <li>
                            <div class="row">
                               <div class="col-md-12">
-                                 <form class="form" role="form" method="post" action="users/sign_in" accept-cha rset="UTF-8" id="login-nav">
+                                 <form class="form" role="form" method="post" action="/users/sign_in" accept-cha rset="UTF-8" id="login-nav">
                                     <div class="form-group">
                                        <label class="sr-only" for="email">Email address</label>
                                        <input type="email" class="form-control" id="email" placeholder="Email address" required>
@@ -87,8 +91,13 @@
                            <input class="btn btn-primary btn-block" type="button" id="sign-in-twitter" value="Sign In with Facebook">
                         </li>
                      </ul>
-                  </li>
+                  </li> -->
+                <% end %>
+
                </ul>
+
+
+
             </div>
             <!-- /.navbar-collapse -->
          </nav>
