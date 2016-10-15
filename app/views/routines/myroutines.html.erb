@@ -1,2 +1,29 @@
-<h1>Routines#myroutines</h1>
-<p>Find me in app/views/routines/myroutines.html.erb</p>
+<h1>Shared Routines</h1>
+<!-- 
+<% current_user.routines.each do |saved| %>
+  <%= saved.routine['list'] %>
+<% end %> -->
+
+
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <!-- Saved Exercises -->
+      <tr>
+      <th>
+      nice
+      </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% current_user.routines.each do |allroutines| %>
+        <tr>
+        <td>
+        <%= allroutines.name %>
+        </td>
+        </tr>
+      <% end %>
+
+    </tbody>
+  </table>
+</div>

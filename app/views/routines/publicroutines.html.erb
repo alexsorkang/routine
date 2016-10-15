@@ -1,2 +1,7 @@
-<h1>Routines#publicroutines</h1>
-<p>Find me in app/views/routines/publicroutines.html.erb</p>
+<h1>All routines</h1>
+  <% Routine.all.each do |routine| %>
+    <p>
+      <%= routine.name %>
+    </p>
+  <% end %>
+

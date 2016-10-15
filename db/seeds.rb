@@ -18,3 +18,7 @@ user.save!
 # exercise.save!
 
 exercise = Routine.create(name:'stronglift 5x5',description:'test text',routine:{'split':2, 'list':[[['bench', 5,5],['rows', 3,8]],[['ohp',5,5],['deadlift',1,5]]]},difficulty:'novice')
+# exercise1 = Routine.create(name:'test\'s routine',description:'test text',routine:{'split':2, 'list':[[['bench', 5,5],['rows', 3,8]],[['ohp',5,5],['deadlift',1,5]]]},difficulty:'novice')
+
+user.routines.create(name:'tests routine',description:'test text',routine:{'split':2, 'list':[[['bench', 5,5],['rows', 3,8]],[['ohp',5,5],['deadlift',1,5]]]},difficulty:'novice')
+user.routines.create(name:'second text routine',description:'this is another test text',routine:{'split':2, 'list':[[['bench', 5,5],['rows', 3,8]],[['ohp',5,5],['deadlift',1,5]]]},difficulty:'novice')
