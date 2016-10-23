@@ -7,11 +7,12 @@ Rails.application.routes.draw do
   root 'index#index'
 
   # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  resources :newroutine, :controller => "routines"
+    # get 'products/:id' => 'catalog#view'
   get 'publicroutines' => 'routines#publicroutines'
   get 'myroutines' => 'routines#myroutines'
   get 'progress' => 'routines#currentroutine'
-  get 'newroutine' => 'routines#newroutine'
+  # get 'newroutine' => 'routines#newroutine'
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 

@@ -34,7 +34,7 @@
                       </ul>
                   </li>
                   <li><%= link_to('Current', progress_path, :method => :get) %></li>
-                  <li><%= link_to('Create', newroutine_path, :method => :get) %></li>
+                  <li><%= link_to('Create', new_newroutine_path, :method => :get) %></li>
                </ul>
                <ul class="nav navbar-nav navbar-right">
                 <% if user_signed_in? %>
@@ -52,6 +52,7 @@
 </div>
 
   <div class="container">
+    <p style="color: green"><%= flash[:notice] %></p>
     <%= yield %>
   </div>
 </body>

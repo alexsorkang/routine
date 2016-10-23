@@ -1,5 +1,9 @@
 class RoutinesController < ApplicationController
-  before_filter :ensure_loggedin!, only: [:newroutine, :currentroutine, :myroutines]
+  before_filter :ensure_loggedin!, except: [:publicroutines]
+
+  def routine_params
+    params.require(:routine)
+  end
 
   def publicroutines
     @sharedroutines = Routine.where(:shared => true)
@@ -16,7 +20,16 @@ class RoutinesController < ApplicationController
     @progress = current_user.current_routine
   end
 
-  def newroutine
+  def new
+    @routine = Routine.new
+  end
+
+  def create
+    routine_details = routine_params
+    @routine = Routine.new(routine_details)
+    # @routine.user_id = current_user
+    @routine.save
+    # @routine = Routine.new
   end
 
   private
