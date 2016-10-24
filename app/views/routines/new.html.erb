@@ -1,12 +1,12 @@
-<h1>create</h1>
+<h1>create a routine</h1>
 <%= form_for @routine, url: new_newroutine_path do |f| %>
-  <div class="form-group">
-    <%= label_tag :name, "title" %>
+  <div class="form-group col-xs-4">
+    <%= label_tag :name, "Name of routine" %><br>
     <%= f.text_field :name, :class => "form-control", :placeholder => "Title" %>
   </div>
   <div class="form-group">
     <%= label_tag :name, "title" %>
-    <%= f.text_area :description, size: "60x12" %>
+    <%= f.text_area :description, :class => "form-control", :rows => 5 %>
   </div>
   <%= f.submit "Create" %>
 <% end %>

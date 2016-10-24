@@ -17,8 +17,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-/*.container {*/
-	/*height: 50px;*/
-	/*width:50%;
-	padding-top: 40px;*/
-/*}*/
+label {
+    font-weight: normal !important;
+    font-family: 'Asap', 'sans-serif';
+}
+
+h1, p {
+	font-family: 'Asap', 'sans-serif';
+}
