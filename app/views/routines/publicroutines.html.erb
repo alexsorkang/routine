@@ -1,7 +1,2 @@
-<h1>All routines</h1>
-  <% @sharedroutines.each do |routine| %>
-    <p>
-      <%= routine.name %>
-    </p>
-  <% end %>
+<%= react_component "allroutines", {data: @sharedroutines} %>
 
