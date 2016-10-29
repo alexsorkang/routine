@@ -24,19 +24,52 @@
       <span class="custom-control-indicator"></span>
       <span class="custom-control-description">Novice</span>
     </label>
+    <br>
     <label class="custom-control custom-radio">
       <%= f.radio_button :difficulty, "intermediate", :class=>"custom-control-input" %>
       <span class="custom-control-indicator"></span>
       <span class="custom-control-description">Intermediate</span>
     </label>
+    <br>
     <label class="custom-control custom-radio">
       <%= f.radio_button :difficulty, "advanced", :class=>"custom-control-input" %>
       <span class="custom-control-indicator"></span>
       <span class="custom-control-description">Advanced</span>
     </label>
   </div>
+  <br>
+
+  <!-- workout form -->
+  <div id="routineform" class="row no-margin">
+    <table class="table auto">
+      <thead class="thead-inverse">
+        <th>Exercise</th>
+        <th>sets</th>
+        <th>reps</th>
+        <th class="text-right"><div class='glyphicon glyphicon-remove'></div></th>
+      </thead>
+      <tbody>
+        <%= render 'exerciseform' %>
+        <%= render 'exerciseform' %>
+        <tr class="addexercisebutton"><td><a href="javascript:;" onclick="addexercise($(this))">Add exercise</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+
   <!-- submit button -->
   <div class="row no-margin">
-  <%= f.submit "Create", :class => "btn btn-default" %>
+    <%= f.submit "Create", :class => "btn btn-default" %>
+  </div>
+
+
+
+  <div style="display: none;">
+    <table>
+      <tbody id="newexerciseform">
+    <%= render "exerciseform" %>
+      </tbody>
+    </table>
   </div>
 <% end %>
+
+

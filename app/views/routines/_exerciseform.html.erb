@@ -1,0 +1,12 @@
+<tr>
+  <td class="col-xs-8">
+    <%= text_field_tag "routine[]", nil, class: "form-control" %>
+  </td>
+  <td class="col-xs-2">
+    <%= number_field_tag "routine[]", nil, class: "form-control" %>
+  </td>
+  <td class="col-xs-2">
+    <%= number_field_tag "routine[]", nil, class: "form-control" %>
+  </td>
+  <td class="deleterow text-right" onclick="removeexercise($(this))"><div class='glyphicon glyphicon-remove'></div></td>
+</tr>
