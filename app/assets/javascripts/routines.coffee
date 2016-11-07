@@ -5,8 +5,12 @@
 
 @addexercise = (element) ->
   $copy = $("#newexerciseform").children().clone(true,true)
-  console.log($copy.html())
   element.parent().parent('tr').before($copy)
+
+@addday = (element) ->
+  $copy = $("#newdayform").children().clone(true,true)
+  $("#workoutforms").append($copy)
+
 
 @removeexercise = (element) ->
   element.parent('tr').remove()

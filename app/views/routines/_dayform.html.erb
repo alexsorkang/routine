@@ -1,0 +1,16 @@
+<!-- workout form -->
+  <div id="routineform" class="row no-margin">
+    <table class="table auto">
+      <thead class="thead-inverse">
+        <th>Exercise</th>
+        <th>sets</th>
+        <th>reps</th>
+        <th class="text-right"><div class='glyphicon glyphicon-remove'></div></th>
+      </thead>
+      <tbody>
+        <%= render 'exerciseform' %>
+        <%= render 'exerciseform' %>
+        <tr class="addexercisebutton"><td><a href="javascript:;" onclick="addexercise($(this))">Add exercise</a></td></tr>
+      </tbody>
+    </table>
+  </div>
