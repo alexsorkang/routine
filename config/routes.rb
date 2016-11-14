@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root 'index#index'
 
   # Example of regular route:
-  resources :newroutine, :controller => "routines"
+  resources :routines
     # get 'products/:id' => 'catalog#view'
   get 'publicroutines' => 'routines#publicroutines'
   get 'myroutines' => 'routines#myroutines'

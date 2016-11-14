@@ -11,6 +11,8 @@
   $copy = $("#newdayform").children().clone(true,true)
   $("#workoutforms").append($copy)
 
-
 @removeexercise = (element) ->
   element.parent('tr').remove()
+
+@removetable = (element) ->
+  element.parent().parent().parent().parent('div').remove()

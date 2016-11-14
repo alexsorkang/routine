@@ -18,6 +18,20 @@ $navbar-default-bg: white;
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+/* START OF Change the Navbar Colors/Font/Size */
+/* Adjust Menu (red) text color, (Garamond) font-family, (1.5em) font-size  */
+.navbar .nav > li > a, .navbar .nav > li > a:first-letter,
+.navbar .nav > li.current-menu-item > a, 
+.navbar .nav > li.current-menu-ancestor > a {
+color:          black;                        
+font-family: 'Asap', 'sans-serif';
+}
+
+.navbar-default .navbar-brand {
+	font-family: 'Asap', 'sans-serif';
+    color: black;
+}
+
 label {
     font-weight: normal !important;
     font-family: 'Asap', 'sans-serif';

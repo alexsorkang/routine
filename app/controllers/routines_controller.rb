@@ -2,7 +2,7 @@ class RoutinesController < ApplicationController
   before_filter :ensure_loggedin!, except: [:publicroutines]
 
   def routine_params
-    params.require(:routine)
+    # params.require(:routine).permit(:name, :description, :difficulty, :routine[])
   end
 
   def publicroutines
@@ -25,11 +25,15 @@ class RoutinesController < ApplicationController
   end
 
   def create
-    routine_details = routine_params
-    @routine = Routine.new(routine_details)
+    # routine_details = routine_params
+    puts 1
+    puts params.inspect
+    puts 1
+    puts routine_params
+    puts 1
+    # @routine = Routine.new(routine_details)
     # @routine.user_id = current_user
-    @routine.save
-    # @routine = Routine.new
+    # @routine.save
   end
 
   private

@@ -1,72 +1,58 @@
 <h1>create a routine</h1>
-<%= form_for @routine, url: new_newroutine_path do |f| %>
+  <%= form_for @routine, :remote => true do |f| %>
 
-  <!-- routine name textfield -->
-  <div class="row">
-    <div class="form-group col-xs-4">
-      <%= label_tag :name, "Name of routine", :class => "control-label" %><br>
-      <%= f.text_field :name, :class => "form-control" %>
+    <!-- routine name textfield -->
+    <div class="row">
+      <div class="form-group col-xs-4">
+        <%= label_tag :name, "Name of routine", :class => "control-label" %><br>
+        <%= f.text_field :name, :class => "form-control" %>
+      </div>
     </div>
-  </div>
 
-  <!-- description textarea -->
-  <div class="row no-margin">
-    <div class="form-group">
-      <%= label_tag :name, "Description" %>
-      <%= f.text_area :description, :class => "form-control", :rows => 8 %>
+    <!-- description textarea -->
+    <div class="row no-margin">
+      <div class="form-group">
+        <%= label_tag :description, "Description" %>
+        <%= f.text_area :description, :class => "form-control", :rows => 8 %>
+      </div>
     </div>
-  </div>
 
-  <!-- radio for difficulty -->
-  <div class="row no-margin">
-    <label class="custom-control custom-radio">
-      <%= f.radio_button :difficulty, "novice", :class=>"custom-control-input" %>
-      <span class="custom-control-indicator"></span>
-      <span class="custom-control-description">Novice</span>
-    </label>
+    <!-- radio for difficulty -->
+    <div class="row no-margin">
+      <label class="custom-control custom-radio">
+        <%= f.radio_button :difficulty, "novice", :class=>"custom-control-input" %>
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Novice</span>
+      </label>
+      <br>
+      <label class="custom-control custom-radio">
+        <%= f.radio_button :difficulty, "intermediate", :class=>"custom-control-input" %>
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Intermediate</span>
+      </label>
+      <br>
+      <label class="custom-control custom-radio">
+        <%= f.radio_button :difficulty, "advanced", :class=>"custom-control-input" %>
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Advanced</span>
+      </label>
+    </div>
     <br>
-    <label class="custom-control custom-radio">
-      <%= f.radio_button :difficulty, "intermediate", :class=>"custom-control-input" %>
-      <span class="custom-control-indicator"></span>
-      <span class="custom-control-description">Intermediate</span>
-    </label>
-    <br>
-    <label class="custom-control custom-radio">
-      <%= f.radio_button :difficulty, "advanced", :class=>"custom-control-input" %>
-      <span class="custom-control-indicator"></span>
-      <span class="custom-control-description">Advanced</span>
-    </label>
-  </div>
-  <br>
 
-  <!-- workout form -->
-  <div id="workoutforms">
-    <a href="javascript:;" onclick="addday($(this))">Add Day</a>
-    <div id="routineform" class="row no-margin">
-      <table class="table auto">
-        <thead class="thead-inverse">
-          <th>Exercise</th>
-          <th>sets</th>
-          <th>reps</th>
-          <th class="text-right"><div class='glyphicon glyphicon-remove'></div></th>
-        </thead>
-        <tbody>
-          <%= render 'exerciseform' %>
-          <%= render 'exerciseform' %>
-          <tr class="addexercisebutton"><td><a href="javascript:;" onclick="addexercise($(this))">Add exercise</a></td></tr>
-        </tbody>
-      </table>
+    <!-- workout form -->
+
+    <div id="workoutforms" class="row no-margin">
+      <a href="javascript:;" onclick="addday($(this))">Add day</a>
+      <%= render 'dayform' %>
+      <%= render 'dayform' %>
+    </div>
+ 
+    <!-- submit button -->
+    <div class="row no-margin">
+      <%= f.submit "Create", :class => "btn btn-default" %>
     </div>
 
-    <%= render 'dayform' %>
-    <%= render 'dayform' %>
-  </div>
-
-  <!-- submit button -->
-  <div class="row no-margin">
-    <%= f.submit "Create", :class => "btn btn-default" %>
-  </div>
-
+  <% end %>
 
 
   <div style="display: none;">
@@ -81,7 +67,6 @@
     <%= render "dayform" %>
   </div>
 
-<% end %>
 
 
 
