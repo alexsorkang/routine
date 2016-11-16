@@ -1,7 +1,29 @@
 <div class="container">
 <p>
   <% if !@progress.nil? %>
-    <%= @progress.name %>
+    <% @progress.routine['list'].each do |day| %>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>name</th>
+              <th>sets</th>
+              <th>reps</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% day.each do |exerc| %>
+              <tr>
+                <td class='col-sm-8'><%= exerc[0] %></td>
+                <td class='col-sm-2'><%= exerc[1] %></td>
+                <td class='col-sm-2'><%= exerc[2] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+
   <% else %>
     <h1>
       looks like you are not on a program

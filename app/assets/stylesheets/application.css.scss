@@ -60,12 +60,22 @@ font-family: 'Asap', 'sans-serif';
     cursor: default;
 }
 
+.navalign {
+	text-align: right;
+	padding-right: 25px;
+}
 
+.visible-small{
+@media (max-width: 907px) { 
+}
+}
 
-
-
-
-
+.visible-large{
+@media (min-width: 908px) { 
+	text-align: right;
+	padding-right: 25px;
+}
+}
 
 label {
     font-weight: normal !important;
