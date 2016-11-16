@@ -1,27 +1,31 @@
 <div class="container">
-  <h3><%= @specroutine.name %></h3> <br>
-  <h5><%= @specroutine.description %> <br>
-  <%= @specroutine.difficulty %> <br>
-  <%= @specroutine.routine['split'] %></h5>
-  <div class="table-responsive">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-        <th>
-        name
-        </th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @specroutine.routine['list'].each do |exerc| %>
-          <tr>
-          <td>
-          <%= exerc %>
-          </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+  <h3><%= @specroutine.name %><br></h3>
+  <h4> <%= @specroutine.difficulty %> <br> </h4>
+  <h5>
+    <%= @specroutine.description %> <br>
+    <!-- <%= @specroutine.routine['split'] %> -->
+  </h5>
 
+  <% @specroutine.routine['list'].each do |day| %>
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>name</th>
+            <th>sets</th>
+            <th>reps</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% day.each do |exerc| %>
+            <tr>
+              <td class='col-sm-8'><%= exerc[0] %></td>
+              <td class='col-sm-2'><%= exerc[1] %></td>
+              <td class='col-sm-2'><%= exerc[2] %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
 </div>

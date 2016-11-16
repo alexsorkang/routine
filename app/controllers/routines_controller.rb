@@ -23,13 +23,14 @@ class RoutinesController < ApplicationController
   def viewroutine
     @specroutine = params['id']
     @specroutine = Routine.find(@specroutine)
-    puts @specroutine.inspect
   end
 
   def create
     routine_details = routine_params
+    puts 1
+    puts routine_details.inspect
+    puts 1
     @routine = Routine.new(routine_details)
-
   end
 
   private
