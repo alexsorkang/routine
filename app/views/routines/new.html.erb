@@ -1,5 +1,6 @@
+<div class='container'>
 <h1>create a routine</h1>
-  <%= form_for @routine, :remote => true do |f| %>
+  <%= form_for @routine, :remote => true, :format => :json do |f| %>
 
     <!-- routine name textfield -->
     <div class="row">
@@ -66,7 +67,7 @@
   <div id="newdayform" style="display:none;">
     <%= render "dayform" %>
   </div>
-
+</div>
 
 
 

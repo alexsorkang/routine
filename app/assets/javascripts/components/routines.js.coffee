@@ -12,9 +12,6 @@
   render: ->
     React.DOM.div
       className: 'allroutines'
-      React.DOM.h1
-        className: 'title'
-        'All routines'
       React.DOM.table
         className: 'table'
         React.DOM.thead null,

@@ -32,17 +32,51 @@ font-family: 'Asap', 'sans-serif';
     color: black;
 }
 
-label {
-    font-weight: normal !important;
-    font-family: 'Asap', 'sans-serif';
+.sidenav-container {
+	margin-left: 0px;
 }
 
-h1, h2, h3, h4, h5 p {
-	font-family: 'Asap', 'sans-serif';
+.sidenav-container .text-style {
+  text-align: justify;
+  line-height: 23px;
+  margin: 0 13px 0 0;
+  font-size: 19px;
+}
+
+.nav-sidebar {
+	width: 100%;
+	border-right: 1px solid #ddd;
+}
+
+.nav-sidebar a {
+    color: #333;
+    -webkit-transition: all 0.08s linear;
+    -moz-transition: all 0.08s linear;
+    -o-transition: all 0.08s linear;
+    transition: all 0.08s linear;
+}
+
+.nav-sidebar .active a { 
+    cursor: default;
+}
+
+
+
+
+
+
+
+
+label {
+    font-weight: normal !important;
 }
 
 textarea{
 	resize:none;
+}
+
+body {
+	font-family: 'Asap', 'sans-serif';
 }
 
 .no-margin{

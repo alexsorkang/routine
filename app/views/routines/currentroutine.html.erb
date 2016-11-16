@@ -1,4 +1,15 @@
-<h1>Routines#currentroutine</h1>
+<div class="container">
 <p>
-	<%= @progress.name %>
+  <% if !@progress.nil? %>
+    <%= @progress.name %>
+  <% else %>
+    <h1>
+      looks like you are not on a program
+    </h1>
+    <h3>
+      <%= link_to('click here to create a routine', new_routine_path, :method => :get) %><br>
+      <%= link_to('click here to browse shared routines', publicroutines_path, :method => :get) %>
+    </h3>
+  <% end %>
 </p>
+</div>
