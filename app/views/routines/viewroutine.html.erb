@@ -1,0 +1,27 @@
+<div class="container">
+  <h3><%= @specroutine.name %></h3> <br>
+  <h5><%= @specroutine.description %> <br>
+  <%= @specroutine.difficulty %> <br>
+  <%= @specroutine.routine['split'] %></h5>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+        <th>
+        name
+        </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @specroutine.routine['list'].each do |exerc| %>
+          <tr>
+          <td>
+          <%= exerc %>
+          </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>

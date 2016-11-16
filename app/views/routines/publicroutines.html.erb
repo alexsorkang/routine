@@ -14,24 +14,26 @@
           <table class="table table-hover">
             <thead>
               <!-- Saved Exercises -->
-              <tr>
               <th>
-              Name
+              name
               </th>
-              </tr>
+              <th>
+              difficulty
+              </th>
             </thead>
             <tbody>
               <% @sharedroutines.each do |allroutines| %>
                 <tr>
                 <td>
-                <%= allroutines.name %>
+                <%= link_to(allroutines.name, specroutine_path(allroutines.id), :method => :get) %>
                 </td>
+                <td>
+                <%= allroutines.difficulty %>
                 </tr>
               <% end %>
             </tbody>
           </table>
         </div>
-      <hr>
     </div>
 
 
@@ -42,7 +44,10 @@
             <thead>
               <tr>
               <th>
-              Name
+              name
+              </th>
+              <th>
+              difficulty
               </th>
               </tr>
             </thead>
@@ -51,6 +56,9 @@
                 <tr>
                 <td>
                 <%= allroutines.name %>
+                </td>
+                <td>
+                <%= allroutines.difficulty %>
                 </td>
                 </tr>
               <% end %>

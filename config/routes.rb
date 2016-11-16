@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'publicroutines' => 'routines#publicroutines'
   # get 'myroutines' => 'routines#myroutines'
   get 'progress' => 'routines#currentroutine'
+  get 'routine/:id' => 'routines#viewroutine', as: 'specroutine'
   # get 'newroutine' => 'routines#newroutine'
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

@@ -20,14 +20,16 @@ class RoutinesController < ApplicationController
     @routine = Routine.new
   end
 
+  def viewroutine
+    @specroutine = params['id']
+    @specroutine = Routine.find(@specroutine)
+    puts @specroutine.inspect
+  end
+
   def create
     routine_details = routine_params
     @routine = Routine.new(routine_details)
-    # @routine.user_id = current_user
 
-    # @routine = Routine.new(routine_details)
-    # @routine.user_id = current_user
-    # @routine.save
   end
 
   private
