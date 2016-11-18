@@ -8,6 +8,7 @@
 user = User.new
 user.email = 'test@test.com'
 user.password = 'password123'
+user.username = 'admin'
 user.save!
 
 # exercise = Routine.new
