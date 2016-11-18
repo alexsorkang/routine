@@ -34,7 +34,13 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <% if user_signed_in? %>
-                <li><%= link_to(current_user.username, destroy_user_session_path, :method => :delete) %></li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#"> <%= current_user.username %> <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><%= link_to('account', edit_user_registration_path, :method => :get) %></li>
+                    <li><%= link_to('logout', destroy_user_session_path, :method => :delete) %></li>
+                  </ul>
+                </li>
               <% else %>
                 <li><%= link_to('Sign up', new_user_registration_path, :method => :get) %></li>
                 <li><%= link_to('Sign in', new_user_session_path, :method => :get) %></li>
