@@ -48,6 +48,10 @@
       <%= render 'dayform' %>
     </div>
  
+    <!-- hidden form for table and row count -->
+    <!-- <div> -->
+      <%= f.hidden_field(:tablecount, :value => []) %> 
+    <!-- </div> -->
     <!-- submit button -->
     <div class="row no-margin">
       <%= f.submit "Create", :class => "btn btn-default" %>
