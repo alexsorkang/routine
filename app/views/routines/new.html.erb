@@ -54,7 +54,9 @@
     <!-- </div> -->
     <!-- submit button -->
     <div class="row no-margin">
-      <%= f.submit "Create", :class => "btn btn-default" %>
+      <%= f.submit "Set As Current", :name => "button", :value => "Set As Current", :class => "btn btn-default" %>
+      <%= f.submit "Share Routine", :name => "button", :value => "Share Routine", :class => "btn btn-default" %>
+      <%= f.submit "Share & Set As Current", :name => "button", :value => "Share & Set As Current", :class => "btn btn-default" %>
     </div>
 
   <% end %>

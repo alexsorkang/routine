@@ -44,41 +44,58 @@ class RoutinesController < ApplicationController
     @routine.name = params['routine']['name']
     @routine.description = params['routine']['description']
     @routine.difficulty = params['routine']['difficulty']
-    
-    # set as true for now
-    @routine.shared = true
 
     @exerciselist = {}
     @exerciselist['split'] = @splitcount.length
 
-    # example of splitcount is [2,2,2,2]
-    # example of 
     sum = 0
     alldays = []
     @splitcount.each do |rows|
-      # puts rows
       oneday = []
       rows.times do |i|
         oneexercise = [params['exercisename'][i+sum], params['sets'][i+sum], params['reps'][i+sum]]
         oneday << oneexercise
       end
       alldays << oneday
-      # puts oneday
-      # puts alldays
       sum = sum + rows
-      # puts 'nextday'
     end
-    # puts alldays
-    # puts allexercise
     @exerciselist['list'] = alldays
-    # @exerciselist['list'] = 
     @routine['routine'] = @exerciselist
-    @routine.save!
+    @current_user.routines << @routine
 
 
-    # puts @routine
-    # @exerciselist[]
-
+    # "Set As Current"
+    # "Share Routine"
+    # "Share & Set As Current"
+    # dont forget to add warning if choosing to replace currentroutine
+    if params['button'] == "Share & Set As Current"
+      @routine.shared = true
+      user = User.find(current_user.id)
+      user.current_routine = @routine
+      user.save
+      # @routine.save
+      # redirect_to action: 'currentroutine'
+      # if @routine.save
+      #   user = User.find(current_user.id)
+      #   user.current_routine = @routine
+      #   user.save
+      #   redirect_to action: 'currentroutine'
+      # end
+    elsif params['button'] == "Share Routine"
+      @routine.shared = true
+      if @routine.save
+        redirect_to action: 'publicroutines'
+      end
+    elsif params['button'] == "Set As Current"
+      @routine.shared = false
+      user = User.find(current_user.id)
+      user.current_routine = @routine
+      if @routine.save
+        user.save
+        redirect_to action: 'currentroutine'
+      end
+    end
+    # dont forget to delete currentroutine if it isnt shared and user chooses to set current
   end
 
   private
