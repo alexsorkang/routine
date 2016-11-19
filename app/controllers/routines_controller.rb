@@ -50,8 +50,33 @@ class RoutinesController < ApplicationController
 
     @exerciselist = {}
     @exerciselist['split'] = @splitcount.length
-    @routine['routine']['split'] = @exerciselist
-    puts @routine
+
+    # example of splitcount is [2,2,2,2]
+    # example of 
+    sum = 0
+    alldays = []
+    @splitcount.each do |rows|
+      # puts rows
+      oneday = []
+      rows.times do |i|
+        oneexercise = [params['exercisename'][i+sum], params['sets'][i+sum], params['reps'][i+sum]]
+        oneday << oneexercise
+      end
+      alldays << oneday
+      # puts oneday
+      # puts alldays
+      sum = sum + rows
+      # puts 'nextday'
+    end
+    # puts alldays
+    # puts allexercise
+    @exerciselist['list'] = alldays
+    # @exerciselist['list'] = 
+    @routine['routine'] = @exerciselist
+    @routine.save!
+
+
+    # puts @routine
     # @exerciselist[]
 
   end
