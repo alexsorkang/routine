@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161120062621) do
+ActiveRecord::Schema.define(version: 20161121045911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,13 +19,12 @@ ActiveRecord::Schema.define(version: 20161120062621) do
   create_table "routines", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.jsonb    "routine",            default: {}, null: false
+    t.jsonb    "routine",     default: {}, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "difficulty"
     t.integer  "user_id"
     t.boolean  "shared"
-    t.integer  "current_routine_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -42,7 +41,7 @@ ActiveRecord::Schema.define(version: 20161120062621) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "username"
-    t.integer  "currently_using_id"
+    t.integer  "current_routine_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

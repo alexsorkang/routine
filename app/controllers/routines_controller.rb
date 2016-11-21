@@ -13,7 +13,11 @@ class RoutinesController < ApplicationController
   end
 
   def currentroutine
-    @progress = current_user.current_routine
+    # find a way to make associations work
+    @current_routine = current_user.current_routine_id
+    if @current_routine
+      @progress = current_user.routines.find(@current_routine)
+    end
   end
 
   def new
@@ -64,60 +68,20 @@ class RoutinesController < ApplicationController
     end
     @exerciselist['list'] = alldays
     @routine.routine = @exerciselist
-    # user.routines << @routine
-    # @current_user.routines << @routine
-    # "Set As Current"
-    # "Share Routine"
-    # "Share & Set As Current"
-    # dont forget to add warning if choosing to replace currentroutine
 
-    # @user = User.find(current_user.id)
-    # puts 'this is user'
-    # puts @user.inspect
-    # puts 'end of user'
-    # puts user
     if params['button'] == "Share & Set As Current"
-      puts "if button statement"
+      # puts "if button statement"
       @routine.shared = true
-      # puts 2
-      # puts @routine.inspect
-      # puts 2
-      # User.update(current_user.id, :current_routine => @routine)
-      # @user.current_routine = @routine
-      # puts @routine.inspect
-      # puts 1
-      # puts @user.current_routine.inspect
-      # puts 1
-      # if @user.save!
-      #   puts 'saved here'
-      #   puts current_user.current_routine.inspect
-      #   puts 1
-      # end
-      # puts 3
-      # user.save
-      # @routine.save
-      # redirect_to action: 'currentroutine'
       if @routine.save
-        puts "if save statement"
+        # puts "if save statement"
         @current_user.routines << @routine
-        @user = User.find(current_user.id)
-        @user.current_routine = @routine
-        @user.save
-        # puts @routine.id
-        # puts 2
-        # @user = current_user
-        # @user.current_routine = @routine
-        # @user.save
-        # puts @routine.inspect
-        # puts 2
-        # User.update(current_user.id, :current_routine => @routine)
-        # puts 3
-        # puts current_user.current_routine.inspect
-        # puts 3
+        @current_user.current_routine_id = @routine.id
+        @current_user.save
         redirect_to action: 'currentroutine'
       end
     elsif params['button'] == "Share Routine"
       # puts 2
+      @current_user.routines << @routine
       @routine.shared = true
       if @routine.save
         redirect_to action: 'publicroutines'
@@ -125,10 +89,9 @@ class RoutinesController < ApplicationController
     elsif params['button'] == "Set As Current"
       # puts 3
       @routine.shared = false
-      user = User.find(current_user.id)
-      user.current_routine = @routine
       if @routine.save
-        user.save
+        @current_user.current_routine_id = @routine.id
+        @current_user.save
         redirect_to action: 'currentroutine'
       end
     end
