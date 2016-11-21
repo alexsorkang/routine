@@ -16,7 +16,7 @@ class RoutinesController < ApplicationController
     # find a way to make associations work
     @current_routine = current_user.current_routine_id
     if @current_routine
-      @progress = current_user.routines.find(@current_routine)
+      @progress = Routine.find(@current_routine)
     end
   end
 
