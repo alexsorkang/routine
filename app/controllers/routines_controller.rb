@@ -26,7 +26,22 @@ class RoutinesController < ApplicationController
 
   def viewroutine
     @specroutine = params['id']
-    @specroutine = Routine.find(@specroutine)
+    # first check if exists
+    # then check if shared and current user 
+    # then proceed
+
+    @search = Routine.where(:id => @specroutine)
+    if @search.length == 0
+      flash[:notice] = "that does not exist"
+      return redirect_to publicroutines_path
+    end
+    # elsif
+    # @exists = current_user.routines.where(:id => @specroutine)
+    if !@search[0].shared
+      flash[:notice] = "you can't be there"
+      return redirect_to root_path
+    end
+    @specroutine = @search[0]
   end
 
   def create
