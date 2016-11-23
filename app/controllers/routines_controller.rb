@@ -113,6 +113,11 @@ class RoutinesController < ApplicationController
     # dont forget to delete currentroutine if it isnt shared and user chooses to set current
   end
 
+  def setcurrent
+    puts params
+    current_user.current_routine_id = 
+  end
+
   private
   def ensure_loggedin!
     unless user_signed_in?
