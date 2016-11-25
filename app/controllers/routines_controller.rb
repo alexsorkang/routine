@@ -107,6 +107,7 @@ class RoutinesController < ApplicationController
   # move this to users controller later
   def setcurrent
     current_user.current_routine_id = params['routine_id']
+    # current_user.save
     if current_user.save
       redirect_to progress_path
     end
