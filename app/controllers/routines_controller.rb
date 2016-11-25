@@ -113,9 +113,16 @@ class RoutinesController < ApplicationController
     # dont forget to delete currentroutine if it isnt shared and user chooses to set current
   end
 
+  # move this to users controller later
   def setcurrent
-    puts params
-    current_user.current_routine_id = 
+    current_user.current_routine_id = params['routine_id']
+    if current_user.save
+      redirect_to progress_path
+    end
+    # flash[:notice] = "current routine saved"
+
+    # current_user.current_routine_id = 
+    # current_user.save
   end
 
   private
