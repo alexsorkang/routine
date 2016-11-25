@@ -7,7 +7,7 @@ class RoutinesController < ApplicationController
 
   def publicroutines
     if user_signed_in?
-      @myroutines = current_user.routines.where(:shared => true)
+      @myroutines = current_user.routines
     end
     @sharedroutines = Routine.where(:shared => true)
   end
@@ -57,11 +57,7 @@ class RoutinesController < ApplicationController
     # example post params for reference
     # Parameters: {"utf8"=>"✓", "routine"=>{"name"=>"", "description"=>"", "tablecount"=>"3,2"}, "exercisename"=>["1", "2", "3", "1", "2"], "sets"=>["1", "2", "3", "1", "2"], "reps"=>["1", "2", "3", "1", "2"], "commit"=>"Create"}
 
-    # puts 1
-    # puts params
     @splitcount = params['routine']['tablecount'].split(",").map(&:to_i)
-    # puts a[0]
-    # puts 1
     @routine = Routine.new()
     @routine.name = params['routine']['name']
     @routine.description = params['routine']['description']
@@ -83,26 +79,21 @@ class RoutinesController < ApplicationController
     end
     @exerciselist['list'] = alldays
     @routine.routine = @exerciselist
-
+    @current_user.routines << @routine
     if params['button'] == "Share & Set As Current"
       # puts "if button statement"
       @routine.shared = true
       if @routine.save
-        # puts "if save statement"
-        @current_user.routines << @routine
         @current_user.current_routine_id = @routine.id
         @current_user.save
         redirect_to action: 'currentroutine'
       end
     elsif params['button'] == "Share Routine"
-      # puts 2
-      @current_user.routines << @routine
       @routine.shared = true
       if @routine.save
         redirect_to action: 'publicroutines'
       end
     elsif params['button'] == "Set As Current"
-      # puts 3
       @routine.shared = false
       if @routine.save
         @current_user.current_routine_id = @routine.id
@@ -119,10 +110,6 @@ class RoutinesController < ApplicationController
     if current_user.save
       redirect_to progress_path
     end
-    # flash[:notice] = "current routine saved"
-
-    # current_user.current_routine_id = 
-    # current_user.save
   end
 
   private
