@@ -26,6 +26,7 @@ class RoutinesController < ApplicationController
 
   def viewroutine
     @specroutine = params['id']
+    @ismine = current_user.routines.where(:id => @specroutine).length == 1
     # first check if exists
     # then check if shared and current user 
     # then proceed
