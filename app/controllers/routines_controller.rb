@@ -37,7 +37,7 @@ class RoutinesController < ApplicationController
     end
     # elsif
     # @exists = current_user.routines.where(:id => @specroutine)
-    if !@search[0].shared
+    if !@search[0].shared && current_user.routines.where(:id => @specroutine).length == 0
       flash[:notice] = "you can't be there"
       return redirect_to root_path
     end
