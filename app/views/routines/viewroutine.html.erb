@@ -1,18 +1,18 @@
 <div class="container">
-  <!-- <div class="btn-group pull-right"> -->
-    <!-- <button type="button" class="btn btn-default"> -->
-  <%= form_tag setcurrent_path, :method => :patch do %>
-    <%= hidden_field_tag :routine_id, @specroutine.id %>
-    <%= submit_tag 'set as current', :class => "btn btn-default pull-right" %>
-  <% end %>
-    <!-- </button> -->
-  <!-- </div> -->
+  <div class="btn-group pull-right">
+    <button class="btn btn-default btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      settings <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li><a href="#" class="dropdown-item">edit</a></li>
+      <li><%= link_to('new', new_routine_path, :class => "dropdown-item", :method => :get) %></li>
+      <li><%= link_to 'set as current', '', :class => "dropdown-item", :onclick => "$('#settcurrent').submit()" %></li>
+    </ul>
+  </div>
   <h3><%= @specroutine.name %><br></h3>
   <h4> <%= @specroutine.difficulty %> <br> </h4>
   <h5>
     <%= @specroutine.description %> <br>
-    <!-- <%= @specroutine.routine['split'] %> -->
-    <%= @specroutine.id %>
   </h5>
 
 
@@ -38,4 +38,10 @@
       </table>
     </div>
   <% end %>
+
+    <div style="display: none;">
+    <%= form_tag setcurrent_path, :id => "settcurrent", :method => :patch do %>
+      <%= hidden_field_tag :routine_id, @specroutine.id %>
+    <% end %>
+  </div>
 </div>
