@@ -5,7 +5,8 @@
     </button>
     <ul class="dropdown-menu">
       <% if @ismine %>
-        <li><a href="#" class="dropdown-item">edit</a></li>
+        <!-- <li><a href="#" class="dropdown-item">edit</a></li> -->
+        <li><%= link_to 'edit', updateroutine_path(@specroutine.id), :class => "dropdown-item" %></li>
         <li><a href="#" class="dropdown-item">delete</a></li>
         <!-- <li><%= link_to 'delete', '', :class => "dropdown-item", :onclick => "$('#deletecurrent').submit()" %></li> -->
       <% end %>

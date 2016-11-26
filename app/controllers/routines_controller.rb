@@ -1,6 +1,5 @@
 class RoutinesController < ApplicationController
   before_filter :ensure_loggedin!, except: [:publicroutines]
-
   def routine_params
     params.require(:routine).permit(:name, :description, :difficulty)
   end
@@ -26,7 +25,7 @@ class RoutinesController < ApplicationController
 
   def viewroutine
     @specroutine = params['id']
-    @ismine = current_user.routines.where(:id => @specroutine).length == 1
+    @ismine = ismine?(@specroutine)
     # first check if exists
     # then check if shared and current user 
     # then proceed
@@ -38,11 +37,24 @@ class RoutinesController < ApplicationController
     end
     # elsif
     # @exists = current_user.routines.where(:id => @specroutine)
-    if !@search[0].shared && current_user.routines.where(:id => @specroutine).length == 0
+    if !@search[0].shared && !@ismine
       flash[:notice] = "you can't be there"
       return redirect_to root_path
     end
     @specroutine = @search[0]
+  end
+
+  def viewupdateroutine
+    @routineid = params['id']
+    @ismine = ismine?(@routineid)
+    if !@ismine
+      flash[:notice] = "you can't be there"
+      redirect_to publicroutines_path
+    end
+    
+  end
+
+  def update
   end
 
   def create
@@ -114,6 +126,9 @@ class RoutinesController < ApplicationController
     end
   end
 
+  def ismine?(routineid)
+    return current_user.routines.where(:id => routineid).length == 1
+  end
   private
   def ensure_loggedin!
     unless user_signed_in?
