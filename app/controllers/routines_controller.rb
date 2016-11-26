@@ -1,5 +1,7 @@
 class RoutinesController < ApplicationController
   before_filter :ensure_loggedin!, except: [:publicroutines]
+  # add before_filter for ismine? as opposed to using if statement
+
   def routine_params
     params.require(:routine).permit(:name, :description, :difficulty)
   end
@@ -47,11 +49,14 @@ class RoutinesController < ApplicationController
   def viewupdateroutine
     @routineid = params['id']
     @ismine = ismine?(@routineid)
-    if !@ismine
-      flash[:notice] = "you can't be there"
+    @theroutine = Routine.where(:id => @routineid)
+    if @theroutine.length == 0 || !@ismine
+      flash[:notice] = "you cannot be here"
       redirect_to publicroutines_path
     end
+    @theroutine = @theroutine[0]
     
+
   end
 
   def update
