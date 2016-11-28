@@ -55,7 +55,7 @@ class RoutinesController < ApplicationController
       redirect_to publicroutines_path
     end
     @theroutine = @theroutine[0]
-    
+    @routine = Routine.new
 
   end
 

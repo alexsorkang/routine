@@ -3,5 +3,46 @@
 <h4><%= @theroutine.difficulty %><br>
 <%= @theroutine.description %><br></h4>
 <%= @theroutine.routine['list'] %><br>
+<%= form_for @routine do |f|%>
+  <!-- routine name textfield -->
+  <div class="row">
+    <div class="form-group col-xs-4">
+      <%= label_tag :name, "Name of routine", :class => "control-label" %><br>
+      <%= f.text_field :name, :value => @theroutine.name, :class => "form-control" %>
+    </div>
+  </div>
 
+  <!-- description textarea -->
+  <div class="row no-margin">
+    <div class="form-group">
+      <%= label_tag :description, "Description" %>
+      <%= f.text_area :description, :value => @theroutine.description, :class => "form-control", :rows => 8 %>
+    </div>
+  </div>
+
+  <!-- radio for difficulty -->
+  <div class="row no-margin">
+    <label class="custom-control custom-radio">
+      <%= f.radio_button :difficulty, "novice", :check=>" ", :class=>"custom-control-input" %>
+      <span class="custom-control-indicator"></span>
+      <span class="custom-control-description">Novice</span>
+    </label>
+    <br>
+    <label class="custom-control custom-radio">
+      <%= f.radio_button :difficulty, "intermediate", :class=>"custom-control-input" %>
+      <span class="custom-control-indicator"></span>
+      <span class="custom-control-description">Intermediate</span>
+    </label>
+    <br>
+    <label class="custom-control custom-radio">
+      <%= f.radio_button :difficulty, "advanced", :class=>"custom-control-input" %>
+      <span class="custom-control-indicator"></span>
+      <span class="custom-control-description">Advanced</span>
+    </label>
+  </div>
+  <br>
+
+
+
+<% end %>
 </div>
