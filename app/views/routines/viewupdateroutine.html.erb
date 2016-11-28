@@ -3,7 +3,7 @@
 <h4><%= @theroutine.difficulty %><br>
 <%= @theroutine.description %><br></h4>
 <%= @theroutine.routine['list'] %><br>
-<%= form_for @routine do |f|%>
+<%= form_for @routine, :remote => true, :format => :json do |f|%>
   <!-- routine name textfield -->
   <div class="row">
     <div class="form-group col-xs-4">
@@ -23,26 +23,30 @@
   <!-- radio for difficulty -->
   <div class="row no-margin">
     <label class="custom-control custom-radio">
-      <%= f.radio_button :difficulty, "novice", :check=>" ", :class=>"custom-control-input" %>
+      <%= f.radio_button :difficulty, "novice", :checked => (@theroutine.difficulty == "novice"), :class=>"custom-control-input" %>
       <span class="custom-control-indicator"></span>
       <span class="custom-control-description">Novice</span>
     </label>
     <br>
     <label class="custom-control custom-radio">
-      <%= f.radio_button :difficulty, "intermediate", :class=>"custom-control-input" %>
+      <%= f.radio_button :difficulty, "intermediate", :checked => (@theroutine.difficulty == "intermediate"), :class=>"custom-control-input" %>
       <span class="custom-control-indicator"></span>
       <span class="custom-control-description">Intermediate</span>
     </label>
     <br>
     <label class="custom-control custom-radio">
-      <%= f.radio_button :difficulty, "advanced", :class=>"custom-control-input" %>
+      <%= f.radio_button :difficulty, "advanced", :checked => (@theroutine.difficulty == "advanced"), :class=>"custom-control-input" %>
       <span class="custom-control-indicator"></span>
       <span class="custom-control-description">Advanced</span>
     </label>
   </div>
   <br>
 
-
+  <!-- [ [["bench", 5, 5], ["rows", 3, 8]], [["ohp", 5, 5], ["deadlift", 1, 5]] ] -->
+  <% @theroutine.routine['list'].each do |day| %>
+    <% day.each do |exer| %>
+    <% end %>
+  <% end %>
 
 <% end %>
 </div>
