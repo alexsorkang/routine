@@ -1,9 +1,10 @@
-<div class="container">
+<div class="container"><!-- 
 <h3><%= @theroutine.name %><br></h3>
 <h4><%= @theroutine.difficulty %><br>
 <%= @theroutine.description %><br></h4>
-<%= @theroutine.routine['list'] %><br>
-<%= form_for @routine, :remote => true, :format => :json do |f|%>
+<%= @theroutine.routine['list'] %><br> -->
+<h3> Editing "<%= @theroutine.name %>" </h3>
+<%= form_for @theroutine, :remote => true, :format => :json do |f|%>
   <!-- routine name textfield -->
   <div class="row">
     <div class="form-group col-xs-4">
@@ -43,10 +44,57 @@
   <br>
 
   <!-- [ [["bench", 5, 5], ["rows", 3, 8]], [["ohp", 5, 5], ["deadlift", 1, 5]] ] -->
-  <% @theroutine.routine['list'].each do |day| %>
-    <% day.each do |exer| %>
-    <% end %>
-  <% end %>
+  <!-- this the is routine forms -->
+  <div id="workoutforms" class="row no-margin">
+    <a href="javascript:;" onclick="addday($(this))">Add day</a>
+    <% @theroutine.routine['list'].each do |day| %>
+      <div class="routineform">
+        <table class="table auto">
+          <thead class="thead-inverse">
+            <th>Exercise</th>
+            <th>sets</th>
+            <th>reps</th>
+            <th class="text-right" onclick="removetable($(this))"><div class='glyphicon glyphicon-remove'></div></th>
+          </thead>
+          <tbody>
+            <% day.each do |exer| %>
+              <tr>
+                <td class="col-xs-8">
+                  <%= text_field_tag "exercisename[]", exer[0], class: "form-control", :required => true %>
+                </td>
+                <td class="col-xs-2">
+                  <%= number_field_tag "sets[]", exer[1], class: "form-control", :required => true %>
+                </td>
+                <td class="col-xs-2">
+                  <%= number_field_tag "reps[]", exer[2], class: "form-control", :required => true %>
+                </td>
+                <td class="text-right" onclick="removeexercise($(this))"><div class='glyphicon glyphicon-remove'></div></td>
+              </tr>
+            <% end %>
+            <tr class="addexercisebutton"><td><a href="javascript:;" onclick="addexercise($(this))">Add exercise</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    <% end %>  
+  </div>
 
+
+  <div class="row no-margin">
+    <%= f.submit "Set As Current", :name => "button", :value => "Set As Current", :class => "btn btn-default" %>
+    <%= f.submit "Share Routine", :name => "button", :value => "Share Routine", :class => "btn btn-default" %>
+    <%= f.submit "Share & Set As Current", :name => "button", :value => "Share & Set As Current", :class => "btn btn-default" %>
+  </div>
 <% end %>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <div style="display: none;">
+    <table>
+      <tbody id="newexerciseform">
+        <%= render "exerciseform" %>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="newdayform" style="display:none;">
+    <%= render "dayform" %>
+  </div>
 </div>
