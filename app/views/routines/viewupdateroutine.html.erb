@@ -1,8 +1,4 @@
-<div class="container"><!-- 
-<h3><%= @theroutine.name %><br></h3>
-<h4><%= @theroutine.difficulty %><br>
-<%= @theroutine.description %><br></h4>
-<%= @theroutine.routine['list'] %><br> -->
+<div class="container">
 <h3> Editing "<%= @theroutine.name %>" </h3>
 <%= form_for @theroutine, :remote => true, :format => :json do |f|%>
   <!-- routine name textfield -->
@@ -42,9 +38,6 @@
     </label>
   </div>
   <br>
-
-  <!-- [ [["bench", 5, 5], ["rows", 3, 8]], [["ohp", 5, 5], ["deadlift", 1, 5]] ] -->
-  <!-- this the is routine forms -->
   <div id="workoutforms" class="row no-margin">
     <a href="javascript:;" onclick="addday($(this))">Add day</a>
     <% @theroutine.routine['list'].each do |day| %>
@@ -75,17 +68,16 @@
           </tbody>
         </table>
       </div>
-    <% end %>  
+    <% end %>
   </div>
 
-
+  <%= f.hidden_field(:tablecount, :value => []) %> 
   <div class="row no-margin">
     <%= f.submit "Set As Current", :name => "button", :value => "Set As Current", :class => "btn btn-default" %>
     <%= f.submit "Share Routine", :name => "button", :value => "Share Routine", :class => "btn btn-default" %>
     <%= f.submit "Share & Set As Current", :name => "button", :value => "Share & Set As Current", :class => "btn btn-default" %>
   </div>
 <% end %>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   <div style="display: none;">
     <table>
       <tbody id="newexerciseform">
@@ -97,4 +89,6 @@
   <div id="newdayform" style="display:none;">
     <%= render "dayform" %>
   </div>
+
+  <%= hidden_field_tag 'routineid', @theroutine.id %>
 </div>

@@ -7,7 +7,8 @@
         settings <span class="caret"></span>
       </button>
       <ul class="dropdown-menu">
-        <li><a href="#" class="dropdown-item">edit</a></li>
+        <!-- <li><a href="#" class="dropdown-item">edit</a></li> -->
+        <li><%= link_to 'edit', updateroutine_path(@current_routine), :class => "dropdown-item" %></li>
         <li><%= link_to('new', new_routine_path, :class => "dropdown-item", :method => :get) %></li>
       </ul>
     </div>

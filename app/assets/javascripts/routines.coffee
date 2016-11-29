@@ -17,15 +17,14 @@
 @removetable = (element) ->
   element.parent().parent().parent().parent('div').remove()
 
-@tablecount = () ->
-  x = []
-  x.push $(i).find('tr').length-2 for i in $("#workoutforms .routineform")
-  console.log(x)
-  return x
-
-
-$(document).ready ->
+$ ->
   $('#new_routine').submit ->
+    console.log(2)
+    x = []
+    x.push $(i).find('tr').length-2 for i in $("#workoutforms .routineform")
+    $('#routine_tablecount').val(x)
+  $('.edit_routine').submit ->
+    console.log(1)
     x = []
     x.push $(i).find('tr').length-2 for i in $("#workoutforms .routineform")
     $('#routine_tablecount').val(x)

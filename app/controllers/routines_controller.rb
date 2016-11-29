@@ -2,6 +2,7 @@ class RoutinesController < ApplicationController
   before_filter :ensure_loggedin!, except: [:publicroutines]
   # add before_filter for ismine? as opposed to using if statement
 
+  # i should eventually use routine_params once i figure out how to obtain json
   def routine_params
     params.require(:routine).permit(:name, :description, :difficulty)
   end
@@ -58,7 +59,55 @@ class RoutinesController < ApplicationController
 
   end
 
+  # the update needs to be redone (it should use update attributes but instead it does the exact same thing as new)
   def update
+    @routine = Routine.find(params['id'].to_i)
+    @splitcount = params['routine']['tablecount'].split(",").map(&:to_i)
+    @routine.name = params['routine']['name']
+    @routine.description = params['routine']['description']
+    @routine.difficulty = params['routine']['difficulty']
+    puts 11
+    puts @splitcount
+    puts 11
+    @exerciselist = {}
+    @exerciselist['split'] = @splitcount.length
+
+    sum = 0
+    alldays = []
+    @splitcount.each do |rows|
+      oneday = []
+      rows.times do |i|
+        oneexercise = [params['exercisename'][i+sum], params['sets'][i+sum], params['reps'][i+sum]]
+        oneday << oneexercise
+
+      end
+      alldays << oneday
+      sum = sum + rows
+    end
+    @exerciselist['list'] = alldays
+    @routine.routine = @exerciselist
+    # @current_user.routines << @routine
+    if params['button'] == "Share & Set As Current"
+      # puts "if button statement"
+      @routine.shared = true
+      if @routine.save
+        @current_user.current_routine_id = @routine.id
+        @current_user.save
+        redirect_to specroutine_path(params['id'].to_i)
+      end
+    elsif params['button'] == "Share Routine"
+      @routine.shared = true
+      if @routine.save
+        redirect_to specroutine_path(params['id'].to_i)
+      end
+    elsif params['button'] == "Set As Current"
+      @routine.shared = false
+      if @routine.save
+        @current_user.current_routine_id = @routine.id
+        @current_user.save
+        redirect_to specroutine_path(params['id'].to_i)
+      end
+    end
   end
 
   def create
