@@ -7,14 +7,14 @@ Rails.application.routes.draw do
   root 'index#index'
 
   # Example of regular route:
-  resources :routines
-    # get 'products/:id' => 'catalog#view'
+  resources :routines, :except => [:patch, :destroy]
   get 'publicroutines' => 'routines#publicroutines'
   # get 'myroutines' => 'routines#myroutines'
   get 'progress' => 'routines#currentroutine'
   get 'routine/:id' => 'routines#viewroutine', as: 'specroutine'
   patch 'setcurrent' => 'routines#setcurrent'
   get 'updateroutine/:id' => 'routines#viewupdateroutine', as: 'updateroutine'
+  delete 'deleteroutine/:id' => 'routines#deleteroutine', as: 'deleteroutine'
   # get 'newroutine' => 'routines#newroutine'
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

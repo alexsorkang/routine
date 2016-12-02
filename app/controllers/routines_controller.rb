@@ -66,9 +66,6 @@ class RoutinesController < ApplicationController
     @routine.name = params['routine']['name']
     @routine.description = params['routine']['description']
     @routine.difficulty = params['routine']['difficulty']
-    puts 11
-    puts @splitcount
-    puts 11
     @exerciselist = {}
     @exerciselist['split'] = @splitcount.length
 
@@ -173,9 +170,21 @@ class RoutinesController < ApplicationController
   # move this to users controller later
   def setcurrent
     current_user.current_routine_id = params['routine_id']
-    # current_user.save
+    # puts params
     if current_user.save
       redirect_to progress_path
+    end
+  end
+
+  def deleteroutine
+    chosenroutine = params['routine_id']
+    if ismine?(chosenroutine)
+      if Routine.find(chosenroutine).destroy
+        redirect_to publicroutines_path
+      end
+    else
+      # not yet decided what to do if user somehow tries to delete a routine that isnt theirs
+      redirect_to publicroutines_path
     end
   end
 

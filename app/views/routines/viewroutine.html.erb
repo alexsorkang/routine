@@ -5,12 +5,9 @@
     </button>
     <ul class="dropdown-menu">
       <% if @ismine %>
-        <!-- <li><a href="#" class="dropdown-item">edit</a></li> -->
         <li><%= link_to 'edit', updateroutine_path(@specroutine.id), :class => "dropdown-item" %></li>
-        <li><a href="#" class="dropdown-item">delete</a></li>
-        <!-- <li><%= link_to 'delete', '', :class => "dropdown-item", :onclick => "$('#deletecurrent').submit()" %></li> -->
+        <li><%= link_to 'delete', '', :class => "dropdown-item", :onclick => "$('#deletecurrent').submit()" %></li>
       <% end %>
-      <!-- <li><%= link_to('new', new_routine_path, :class => "dropdown-item", :method => :get) %></li> -->
       <li><%= link_to 'set as current', '', :class => "dropdown-item", :onclick => "$('#settcurrent').submit()" %></li>
     </ul>
   </div>
@@ -46,6 +43,9 @@
 
   <div style="display: none;">
   <%= form_tag setcurrent_path, :id => "settcurrent", :method => :patch do %>
+    <%= hidden_field_tag :routine_id, @specroutine.id %>
+  <% end %>
+  <%= form_tag deleteroutine_path, :id => "deletecurrent", :method => :delete do %>
     <%= hidden_field_tag :routine_id, @specroutine.id %>
   <% end %>
   </div>
