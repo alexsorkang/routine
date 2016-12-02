@@ -17,7 +17,7 @@
 @removetable = (element) ->
   element.parent().parent().parent().parent('div').remove()
 
-$ ->
+ready = ->
   $('#new_routine').submit ->
     console.log(2)
     x = []
@@ -28,4 +28,6 @@ $ ->
     x = []
     x.push $(i).find('tr').length-2 for i in $("#workoutforms .routineform")
     $('#routine_tablecount').val(x)
-    
+
+$(document).ready(ready)
+$(document).on('turbolinks:load', ready)
