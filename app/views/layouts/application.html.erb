@@ -51,10 +51,11 @@
       </div>
     </div>
   </nav>
-
-  <div class="container">
-    <p style="color: green"><%= flash[:notice] %></p>
-  </div>
+    <% if flash[:notice] %>
+      <div class="container">
+        <p style="color: green"><%= flash[:notice] %></p>
+      </div>
+    <% end %>
     <%= yield %>
 </body>
 </html>

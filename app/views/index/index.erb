@@ -1,12 +1,34 @@
-<div class="container">
+<div class="masthead">
 <h2>
-	<a href="publicroutines"> public routines </a>
-	<br>
-	<a href="progress"> progress </a>
-	<br>
-	<!-- <a href="newroutine"> make routine </a> -->
-  <%= link_to("new routine", new_routine_path, :method => :get) %>
-	<br>
-	<a href="myroutines"> saved routines </a>
+  Routineapp<br>
 </h2>
+<h3>
+  A simple tool to monitor your progress
+</h3><br>
+<%= link_to("Click here to get started", new_user_session_path, :method => :get) %>
+</div>
+<div class="container index-container">
+<h3>
+  <%= link_to("Create your own routine", new_routine_path, :method => :get) %>
+</h3>
+  <h4> If you are currently on a specialized routine, <br>you can create a routine and start monitoring <br>your progress here. If you'd like, you can also share <br>your routine with others </h4>
+  <br><br>
+  or 
+  <br><br>
+<h3>
+  <%= link_to("Choose from a list of publicly shared routines", publicroutines_path, :method => :get) %>
+</h3>
+  <h4>
+  If you are currently not on a routine, you can choose <br>from many routines that have been shared by others
+  </h4>
+  <br><br>
+  and 
+  <br><br>
+<h3>
+  <%= link_to("Monitor your progress", progress_path, :method => :get) %><br>
+</h3>
+  <h4>
+  already a member? <br>
+  monitor your progress
+  </h4>
 </div>
