@@ -76,7 +76,6 @@ class RoutinesController < ApplicationController
       rows.times do |i|
         oneexercise = [params['exercisename'][i+sum], params['sets'][i+sum], params['reps'][i+sum]]
         oneday << oneexercise
-
       end
       alldays << oneday
       sum = sum + rows
@@ -169,11 +168,40 @@ class RoutinesController < ApplicationController
 
   # move this to users controller later
   def setcurrent
-    current_user.current_routine_id = params['routine_id']
+    # current_user.current_routine_id = params['routine_id']
+
+    # this is redesigned way 
     # puts params
-    if current_user.save
-      redirect_to progress_path
+    copyroutine = Routine.find(params['routine_id'])
+    puts copyroutine.inspect
+    #<Routine id: 1, name: "stronglift 5x5 v2", description: "one of the more popular beginner programs", 
+    # routine: {"list"=>[[["bench press", "5", "5"], ["bent over rows", "3", "10"], ["chest press", "3", "5"]], [["over head press", "5", "5"], ["deadlift", "3", "5"], ["lat pulldown", "3", "8"], ["bench press", "3", "10"]]], "split"=>2}, 
+    # created_at: "2016-11-18 02:36:33", updated_at: "2016-12-02 05:26:31", difficulty: "novice", user_id: 1, shared: true>
+    if ismine?(params['routine_id'])
+      current_user.current_routine_id = copyroutine
+      if current_user.save
+        redirect_to progress_path
+      end
+    else
+      setcur = Routine.new()
+      setcur.name = copyroutine.name
+      setcur.description = copyroutine.description
+      setcur.routine = copyroutine.routine
+      setcur.difficulty = copyroutine.difficulty
+      setcur.shared = false
+      if setcur.save
+        @current_user.routines << setcur
+        @current_user.current_routine_id = setcur.id
+        @current_user.save
+        redirect_to progress_path
+      end
     end
+    
+    # this is end of redesigned way
+
+    # if current_user.save
+    #   redirect_to progress_path
+    # end
   end
 
   def deleteroutine
