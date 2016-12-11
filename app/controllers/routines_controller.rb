@@ -1,5 +1,5 @@
 class RoutinesController < ApplicationController
-  before_filter :ensure_loggedin!, except: [:publicroutines]
+  before_filter :ensure_loggedin!, except: [:publicroutines, :viewroutine]
   # add before_filter for ismine? as opposed to using if statement
 
   # i should eventually use routine_params once i figure out how to obtain json
@@ -28,7 +28,6 @@ class RoutinesController < ApplicationController
 
   def viewroutine
     @specroutine = params['id']
-    @ismine = ismine?(@specroutine)
     # first check if exists
     # then check if shared and current user 
     # then proceed
@@ -40,9 +39,11 @@ class RoutinesController < ApplicationController
     end
     # elsif
     # @exists = current_user.routines.where(:id => @specroutine)
-    if !@search[0].shared && !@ismine
-      flash[:notice] = "you can't be there"
-      return redirect_to root_path
+    if user_signed_in?
+      if !@search[0].shared && ismine?(@specroutine)
+        flash[:notice] = "you can't be there"
+        return redirect_to root_path
+      end
     end
     @specroutine = @search[0]
   end
